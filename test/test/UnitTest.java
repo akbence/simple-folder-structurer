@@ -29,19 +29,20 @@ public class UnitTest {
          *              /urw (user writeable)
          *          /sysu (user writeable)
          *      /u (user writeable)
-         *          /ur 
+         *          /ur
          *          /urw (user writeable)
          */
         writableFolders = Arrays.asList("/var/sys/sysfolders/urw", "/var/sys/sysu", "/var/u", "/var/u/urw");
         readableFolders = new ArrayList<>(Arrays.asList("/var", "/var/sys"));
         readableFolders.addAll(writableFolders);
+
     }
 
     @Test
-    @DisplayName("test1")
-    public void testWhenAllExpectedPathsInTheResultedFolder() {
+    @DisplayName("testWithCompleteExampleFileSystem")
+    public void testWithCompleteExampleFileSystem() {
+        List<String> expectedList = Arrays.asList("/var/sys/sysu", "/var/u", "/var/u/urw");
         TreeItem tree = fileSystemHandler.getWritableFolderStructure(readableFolders, writableFolders);
-        List<String> expectedList = List.of("/var/sys/sysu", "/var/u", "/var/u/urw");
         Assertions.assertAll(() -> expectedList.forEach(expected -> Assertions.assertTrue(findByPath(tree, expected))));
     }
 
