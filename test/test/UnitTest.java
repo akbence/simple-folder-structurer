@@ -33,7 +33,7 @@ public class UnitTest {
          *          /urw (user writeable)
          */
         writableFolders = Arrays.asList("/var/sys/sysfolders/urw", "/var/sys/sysu", "/var/u", "/var/u/urw");
-        readableFolders = new ArrayList<>(Arrays.asList("/var"));
+        readableFolders = new ArrayList<>(Arrays.asList("/var", "/var/sys"));
         readableFolders.addAll(writableFolders);
 
     }
@@ -41,7 +41,7 @@ public class UnitTest {
     @Test
     @DisplayName("testWithCompleteExampleFileSystem")
     public void testWithCompleteExampleFileSystem() {
-        List<String> expectedList = Arrays.asList( "/var/u", "/var/u/urw");
+        List<String> expectedList = Arrays.asList("/var/sys/sysu", "/var/u", "/var/u/urw");
         TreeItem tree = fileSystemHandler.getWritableFolderStructure(readableFolders, writableFolders);
         Assertions.assertAll(() -> expectedList.forEach(expected -> Assertions.assertTrue(findByPath(tree, expected))));
     }
