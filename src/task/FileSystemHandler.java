@@ -71,8 +71,4 @@ public class FileSystemHandler {
             findAndAddFolder(folderOptional.get(), path);
         }
     }
-
-    public static void main(String[] args) {
-
-    }
 }
